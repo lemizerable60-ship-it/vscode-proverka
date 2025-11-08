@@ -1,0 +1,8 @@
+{
+  "short_name": "PsychoSuite",
+  "name": "PsychoSuite",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "theme_color": "#3b82f6",
+  "background_color": "#111827"
+}

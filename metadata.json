@@ -1,0 +1,5 @@
+{
+  "name": "PsychoSuite",
+  "description": "A local-first PWA for psychologists to manage clients and conduct diagnostic tests, featuring offline support and optional AI-powered result interpretation.",
+  "requestFramePermissions": []
+}

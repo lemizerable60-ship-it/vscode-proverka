@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PsychoSuite</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script crossorigin src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js" defer></script>
+    <script crossorigin src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js" defer></script>
+    <!-- Загружаем AI SDK глобально для надежности -->
+    <script type="module">
+        import { GoogleGenAI } from 'https://cdn.jsdelivr.net/npm/@google/genai/dist/index.esm.js';
+        window.genai = { GoogleGenAI };
+    </script>
+    <link rel="manifest" href="./manifest.json">
+    <meta name="theme-color" content="#111827">
+    <style>
+        :root {
+            --primary-color: #3b82f6; /* blue-500 default */
+        }
+        .bg-primary-100 { background-color: #dbeafe; }
+        .dark .bg-primary-900 { background-color: #1e3a8a; }
+        .bg-primary-600 { background-color: var(--primary-color); }
+        .hover\:bg-primary-700:hover { background-color: #2563eb; }
+        .text-primary-600 { color: var(--primary-color); }
+        .border-primary-500 { border-color: var(--primary-color); }
+        .focus\:ring-primary-500:focus { --tw-ring-color: var(--primary-color); }
+        .ring-primary-500 { --tw-ring-color: var(--primary-color); }
+        body {
+            background-color: #f3f4f6;
+            color: #1f2937;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .dark body {
+            background-color: #111827;
+            color: #d1d5db;
+        }
+        /* Простой костыль для автоподгонки высоты textarea */
+        textarea {
+            field-sizing: content;
+        }
+    </style>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+    <div id="root"></div>
+    <script>
+      // Управление темой и цветом при загрузке
+      function applyTheme() {
+          const theme = localStorage.getItem('theme');
+          if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+      }
+
+      function applyThemeColor() {
+          const storedColor = localStorage.getItem('themeColor');
+          if (storedColor) {
+              document.documentElement.style.setProperty('--primary-color', storedColor);
+          }
+      }
+      
+      applyThemeColor();
+      applyTheme();
+    </script>
+    <script src="./config.js" defer></script>
+    <script src="./index.js" defer></script>
+    <script src="./sw-register.js"></script>
+</body>
+</html>
