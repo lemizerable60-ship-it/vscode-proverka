@@ -1,4 +1,4 @@
-const CACHE_NAME = 'psychosuite-v17';
+const CACHE_NAME = 'psychosuite-v18';
 const URLS_TO_CACHE = [
   './',
   './index.html',
@@ -6,6 +6,7 @@ const URLS_TO_CACHE = [
   './config.js',
   './sw-register.js',
   './manifest.json',
+  './index.css',
   'https://cdn.tailwindcss.com',
   'https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js',
   'https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js'
