@@ -21,15 +21,7 @@ window.addEventListener('load', async () => {
       }
     };
 
-    const downloadAsTxt = (filename, text) => {
-        const element = document.createElement("a");
-        const file = new Blob([text], { type: 'text/plain;charset=utf-8' });
-        element.href = URL.createObjectURL(file);
-        element.download = filename;
-        document.body.appendChild(element);
-        element.click();
-        document.body.removeChild(element);
-    };
+// The downloadAsTxt function has been replaced with direct Blob handling in the report generation functions to ensure proper UTF-8 encoding on all devices.
 
     // --- HOOKS ---
     function useStickyState(defaultValue, key) {
@@ -559,7 +551,14 @@ window.addEventListener('load', async () => {
                 reportText += result.aiInterpretation;
             }
             
-            downloadAsTxt(`Протокол_${client?.name}_${test.name}_${formatDate(result.date)}.txt`, reportText);
+            // Убедимся, что текст отчета в кодировке UTF-8
+            const blob = new Blob([reportText], { type: 'text/plain;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `Протокол_${client?.name}_${test.name}_${formatDate(result.date)}.txt`;
+            a.click();
+            URL.revokeObjectURL(url);
         };
 
         return React.createElement('div', null,
@@ -678,8 +677,15 @@ window.addEventListener('load', async () => {
                 reportText += `\n\nСВОДНЫЙ АНАЛИЗ (AI)\n=========================\n`;
                 reportText += consolidatedReport;
             }
-
-            downloadAsTxt(`Сводный_отчет_${client?.name}_${formatDate(new Date().toISOString())}.txt`, reportText);
+ 
+            // Убедимся, что текст отчета в кодировке UTF-8
+            const blob = new Blob([reportText], { type: 'text/plain;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `Сводный_отчет_${client?.name}_${formatDate(new Date().toISOString())}.txt`;
+            a.click();
+            URL.revokeObjectURL(url);
         };
         
          const loadReport = (report) => {
