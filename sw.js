@@ -1,4 +1,4 @@
-const CACHE_NAME = 'psychosuite-v19';
+const CACHE_NAME = 'psychosuite-v20';
 const URLS_TO_CACHE = [
   './',
   './index.html',
